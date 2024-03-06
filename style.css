@@ -1,0 +1,17 @@
+ #form-comentario textarea {
+     color: rgb(255, 129, 129);
+     background-color: brown;
+ }
+
+ .comentarios {
+     width: auto;
+     margin: 50px auto;
+     height: auto;
+     text-align: center;
+ }
+
+ button {
+    color: blue ;
+    border-radius: 10%;
+
+ }
