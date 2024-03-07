@@ -1,34 +1,35 @@
-let data = []
+let data = [];
 
 const submitComment = (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    const author = inputAuthor.value;
-    const comment = inputComment.value;
+  const author = inputAuthor.value;
+  const comment = inputComment.value;
+  const d = new Date();
 
-    data.push({ author: author, comment: comment })
-    console.log(data)
+  data.push({ author: author, comment: comment, d: d });
+  console.log(data);
 
-    loadComment()
-}
+  loadComment();
+};
 
-const formComentario = document.getElementById('formComment')
-formComentario.addEventListener("submit", submitComment)
+const formComentario = document.getElementById("formComment");
+formComentario.addEventListener("submit", submitComment);
 
 const loadComment = () => {
-    // Dados carregados da API
-    if (data) {
-        displayComment();
-    }
-}
+  // Dados carregados da API
+  if (data) {
+    displayComment();
+  }
+};
 
 const displayComment = () => {
-    const divFeed = document.getElementById('comment-feed');
-    divFeed.innerHTML = ``
-    data.forEach(item => {
-        const divDisplay = document.createElement('div');
-        divDisplay.className = 'comentarios'
-        divDisplay.innerHTML = `
+  const divFeed = document.getElementById("comment-feed");
+  divFeed.innerHTML = ``;
+  data.forEach((item) => {
+    const divDisplay = document.createElement("div");
+    divDisplay.className = "comentarios";
+    divDisplay.innerHTML = `
         
         <div class="d-flex text-body-secondary pt-3">
             <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
@@ -40,11 +41,13 @@ const displayComment = () => {
             </svg>
             <p class="pb-3 mb-0 small lh-sm border-bottom">
                 <strong class="d-block text-gray-dark">@${item.author}</strong>
-                ${item.comment}
+                ${
+                  item.comment
+                } ${item.d.toLocaleDateString()} \n ${item.d.getHours()}:${item.d.getMinutes()} 
             </p>
         </div>
         
-        `
-        divFeed.appendChild(divDisplay);
-    })
-}
+        `;
+    divFeed.appendChild(divDisplay);
+  });
+};
